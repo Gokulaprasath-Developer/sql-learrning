@@ -1,0 +1,35 @@
+-- To create Database 
+Create DATABASE MYDB;
+
+-- To use the Database
+use MYDB;
+
+--import or add data into the sql file
+use cntrl + shift + O -- to open file menu
+
+--to select table/output view
+Select * from emp;
+
+--to view table 
+show tables;
+
+--to limit the rows/tuple
+Select * from emp limit 7;
+Select * from emp limit 9 offset 0;
+
+--Order by Ascending & Descending
+Select * from emp Order by salary;
+Select * from emp Order by salary desc;
+Select * from emp Order by salary asc;
+
+--projection: selection specific column in a table
+Select ename,salary,gender from emp;
+
+--Column Alias: representing proper name for column-change only in table
+Select ename as Emp_name,dept as Department from emp;
+
+--Hierarcheal ordering: sorting multiple columns
+Select * from emp Order by Salary ASC, dept desc;
+
+
+

@@ -1,0 +1,45 @@
+--VIEW :DOEST STORE DATA,IT STORES THE QUERY(VIRTUAL TABLE)
+--CREATE VIEW
+
+CREATE VIEW EMPFE AS
+    DATEDIFF(Current_date,dojoin) AS `EXP`,
+    TIMESTAMPDIFF(dobirth,Current_date) AS `AGE`,
+    23250-salary AS `DEVIATION`,
+    IF(TYPE = 'R','PERMANENT','TEMPORARY') AS `JOB_TYPE`
+FROM emp;
+
+--REPLACE/ALTER view
+
+ALTER VIEW EMPFE AS
+     DATEDIFF(Current_date,dojoin) AS `EXP`,
+    TIMESTAMPDIFF(dobirth,Current_date) AS `AGE`,
+    23250-salary AS `DEVIATION`,
+    IF(TYPE = 'R','PERMANENT','TEMPORARY') AS `JOB_TYPE`,
+    IF(salary > 300000,'TAXABLE','NON_TAXABLE') AS INCOMETAX
+FROM emp;
+
+--DROP view(PERMANENT DELETE)
+
+DROP VIEW EMPFE;
+
+--USING view
+
+SHOW TABLES;
+SELECT * FROM EMPFE;
+SELECT * FROM EMPFE WHERE salary >= 250000;
+
+--HAVING
+SELECT * FROM emp 
+HAVING annual_SALARY > 300000;
+
+--HAVING is mostly used for calculted colum/GROUP BY 
+
+--FEATURE ENGINEERING
+
+SELECT empid,ename,dept,
+	DATEDIFF(current_date,dojoin)/365.25 AS `EXP`,
+    TIMESTAMPDIFF(YEAR,dobirth,current_date) AS `AGE`,
+    IF(TYPE = 'R','PERMENENT','TEMPORARY') AS `job type`,
+    IF(salary*12 > 300000,'TAX','NON_TAX') AS `INCOMETAX`,
+    salary- 23250 AS `DEVIATION`
+FROM emp; 
